@@ -1,0 +1,151 @@
+---
+title: "Pengaruh Ekspor Besi Terhadap PDB Indonesia 2014-2022"
+subtitle: "Metode Penelitian Politeknik APP Jakarta"
+author: "Ghina Rahmi"
+date: 2024-01-19
+number-sections: true
+format:
+  html: default
+  docx: default
+---
+
+![](poltekapp.jpg){width="401"}
+
+## Pendahuluan
+
+### Latar belakang
+
+Suatu aktivitas mengeluarkan barang dari daerah pabean disebut ekspor. Apa itu daerah pabean? Secara sederhana, daerah pabean merupakan suatu daerah milik Republik Indonesia yang terdiri atas wilayah perairan, darat, dan udara di dalam Zona Ekonomi Eksklusif (ZEE). Dalam konteks perdagangan internasional, ekspor mengindikasikan aktivitas penjualan barang dan layanan yang diproduksi dalam negeri kepada pasar di luar negeri. Dalam konteks yang berlawanan, eksportir merujuk kepada entitas yang menjual barang dan layanan tersebut dan berbasis di negara yang melakukan ekspor (Joshi, 2005, Jhingan, 2010, Bishop et al.,2014).
+
+Perdagangan internasional memberikan berikan keuntungan bagi setiap negara yang melakukannya. Manfaat perdagangan internasional antara lain: meningkatkan pendapatan, cadangan devisa, transfer modal, dan kesempatan kerja, serta terciptanya persaingan di pasarinternasional sehingga mendorong efisiensi global, dan spesialisasi dalam memproduksi barang dan jasa dengan harga murah, baik dari segi bahan maupun cara produksi. Pengaruh makro perdagangan internasional, harga dasar ekspor, aliansi perdagangan dan modal asing, serta transfer teknologi merupakan sebagian kecil dari tantangan dan hambatan yang harus diselesaikan bersama (Hidayat et al., 2018).
+
+Sektor ekspor besi atau baja memiliki peran vital dalam perekonomian Indonesia, tidak hanya sebagai sumber pendapatan yang signifikan tetapi juga sebagai penyumbang lapangan kerja serta penggerak pertumbuhan industri manufaktur. Salah satu mitra dagang yang penting dalam ekspor produk-produk ini adalah Singapura. Dalam rangka mengoptimalkan kinerja ekspor besi atau baja ke Singapura, diperlukan pemahaman yang mendalam tentang tren dan pola yang ada dalam data ekspor.
+
+Ekspor besi atau baja memberikan kontribusi yang signifikan terhadap ekspor nonmigas Indonesia, menyumbang 7,01 persen dari total ekspor nonmigas (BPS, 2021). Namun, di balik potensi yang terlihat menggembirakan, terdapat indikasi masalah yang perlu mendapat perhatian serius dalam konteks ekspor besi atau baja dari Indonesia.
+
+### Ruang lingkup
+
+Dalam penelitian ini penulis mengambil objek penelitian dari Badan Pusat Statistik. Ruang lingkup penelitian ini terdapat 2 variabel yaitu ekspor besi dan Produk Domestik Bruto. Data yang digunakan adalah data yang bersifat time series yaitu dalam kurun waktu 2014-2022 dengan satuan yang telah diubah ke dalam USD guna untuk memudahkan penyetaraan mata uang secara internasional, data inilah yang kemudian menjadi objek penelitian.
+
+### Rumusan masalah
+
+1.  Apakah ekspor besi berpengaruh terhadap Produk Domestik Bruto?
+
+2.  Apakah ada hubungan antara ekspor besi dan Produk Domestik Bruto?
+
+### Tujuan dan manfaat penelitian
+
+Tujuan penelitian ini untuk mengetahui pengaruh Ekspor Besi di tahun terkait terhadap Produk Domestik Bruto tahun terkait. Sedangkan manfaat dari penelitian ini agar pemerintah dan masyarakat khususnya pengekspor besi dan industri terkait mengetahui besarnya pengaruh ekspor besi terhadap PDB.
+
+### Package
+
+Package yang digunakan pada penelitian ini antara lain sebagai berikut:
+
+```{r}
+library(tidyverse)
+library(readxl)
+```
+
+## Studi pustaka
+
+Tanjung Marolop (2011:63) menjelaskan bahwa ekspor mengacu pada barang yang diperoleh di wilayah pabean Indonesia dan dikirim ke luar negeri sesuai dengan peraturan yang berlaku, terutama aturan kepabeanan.
+
+Namun, sesuai dengan Undang-Undang Nomor 10 Tahun 1995, ekspor didefinisikan sebagai proses mengirimkan barang yang telah diangkut atau akan diatur untuk dikemas dan dikeluarkan dari wilayah pabean, serta diakui sebagai tindakan ekspor.
+
+## Metode penelitian
+
+### Data
+
+Data yang penulis gunakan berupa data ekspor besi dari Indonesia pada tahun 2014-2022 dan data PDB.
+
+| Tahun | Ekspor Besi | PDB              |
+|-------|-------------|------------------|
+| 2014  | 2.062,40    | 890814755533,54  |
+| 2015  | 2.407,40    | 860854232686,21  |
+| 2016  | 2.237,20    | 931877364037,70  |
+| 2017  | 3.808,80    | 1015618744159,73 |
+| 2018  | 6.452,10    | 1042271532988,63 |
+| 2019  | 7.912,30    | 1119099871350,20 |
+| 2020  | 11.286      | 1059054842698,48 |
+| 2021  | 21.448,20   | 1186505455736,54 |
+| 2022  | 28.483,10   | 1319100220407,72 |
+
+Penelitian ini menggunakan data sekunder dengan bentuk time series 2014-2022, data yang dipakai diolah dan bersumber dari WDI dan BPS.
+
+```{r}
+setwd('C:/Users/hp/Documents/ghina-can/metopel')
+dat<-read_excel('uas Metopel.xlsx')
+library(readxl)
+reg1<-lm(y~x,data=dat)
+dat$u<-resid(reg1)
+plot(dat$x,dat$u,xlab="ekspor besi",ylab="error")
+abline(h=0)
+```
+
+Plot Pengaruh Error Terhadap Ekspor Besi
+
+```{r}
+library(readxl)
+dat$u<-resid(reg1)
+plot(dat$y,dat$u,xlab="pdb",ylab="error")
+abline(h=0)
+```
+
+Plot pengaruh error terhadap PDB
+
+### Metode analisis
+
+Metode yang dipilih adalah regresi univariat atau Ordinary Least Square (OLS) dengan 1 variabel independen. Penelitian ini bermaksud mencari hubungan antara jumlah ekspor besi terhadap PDB. Spesifikasi yang dilakukan adalah:
+
+$$
+y_{t}=\beta_0 + \beta_1 x_t+\mu_t
+$$ di mana $y_t$ adalah PDB dan $x_t$ adalah Ekspor Besi.
+
+## Pembahasan
+
+### Pembahasan masalah
+
+| Variabel           | Coefficient | Std. Error | t\. value | Prob (.) |
+|--------------------|-------------|------------|-----------|----------|
+| Intercept          | 9.089e+11   | 2.866e+10  | 31.719    | 8e-09    |
+| X                  | 1.446e+07   | 2.196e+06  | 6.585     | 0.000309 |
+| R squared          | 5.847e+10   |            |           |          |
+| Adjusted R-squared | 0.8411      |            |           |          |
+| F-statistic        | 43.36       |            |           |          |
+| Prob(F-statistic)  | 0.0003086   |            |           |          |
+
+Hasil regresi yang telah didapat dimasukan ke dalam rumus persamaan yang ada sehingga menjadi:
+
+$$
+Y= 9.089 + 1.446X 
+$$
+
+Peran dari ekspor dalam pertumbuhan ekonomi berperan penting dalam meningkatkan Growth Domestic Product (GDP) dikarenakan nilai variabel X yang menunjukkan positif, meskipun demikian, hasil regresi ini menunjukkan bahwa pengaruh nilai ekspor tidak sepenuhnya mempengaruhi GDP di indonesia. Ada beberapa faktor lain yang menyebabkan peningkatan GDP Indonesia. Dapat diasumsikan bahwa setiap kenaikan ekspor 1, maka GDP akan meningkat sebesar 1.446.
+
+Nilai Adjusted R-squared sebesar 5.847 menunjukan bahwa variabel independen di dalam penelitian dapat menjelaskan variasi variabel dependen sebesar 5,847 persen. F-statistic dengan nilai 43.36 menjelaskan bahwa variabel independen dalam jangka panjang seperti ekspor memiliki pengaruh signifikan terhadap pertumbuhan ekonomi atau GDP Indonesia.
+
+### Analisis masalah
+
+Hasil regresinya adalah
+
+```{r}
+setwd('C:/Users/hp/Documents/ghina-can/metopel')
+dat<-read_excel('uas Metopel.xlsx')
+library(readxl)
+reg1<-lm(y~x,data=dat)
+summary(reg1)
+```
+
+Dilihat dari tabel di atas menujukan bahwa ketika kenaikan nilai ekspor besi dengan diasumsikan 1 nilainya, maka dapat meningkatkan GDP sebesar 1.446.
+
+## Kesimpulan
+
+Setelah dilakukan penelitian melalui sistem regresi multivariat, maka dapat disimpulkan antara lain:
+
+Nilai ekspor ekspor tidak sepenuhnya berpengaruh terhadap PDB, tetapi nilai ekspor mempunyai nilai positif terhadap pertumbuhan PDB hal ini sesuai dengan teori perdagangan internasional, apabila jumlah barang atau jasa yang di ekspor ke luar negeri semakin banyak maka di dalam negeri harus memproduksi barang dan jasa lebih banyak juga. Semakin banyak barang yang di ekspor ke luar negeri maka arus modal yang masuk ke dalam negeri juga dalam jumlah yang banyak.
+
+## Referensi
+
+Rosyda. (2022, October 27). Mengenal Ekspor Impor: Pengertian, Tujuan, Manfaat dan Komoditasnya. Gramedia Literasi. https://gramedia.com/literasi/ekspor-impor/
+
+Sari, F. Y., & Utami, B. S. A. (2023). Pengaruh Nilai Ekspor Besi Baja Indonesia Ke 10 Negara Tujuan. Equilibrium: Jurnal Ekonomi-Manajemen-Akuntansi, 19(1), Article 1. https://doi.org/10.30742/equilibrium.v19i1.2789
